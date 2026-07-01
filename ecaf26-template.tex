@@ -121,22 +121,22 @@
 %% "authornote" and "authornotemark" commands
 %% used to denote shared contribution to the research.
 
-% \author{Example Author}
-% \authornote{Both authors contributed equally to this research.}
-% \affiliation{%
-%   \institution{Some University}
-%   \city{Mainz}
-%   \country{Germany}
-% }
-% \email{example@affiliation.com}
+\author{Hortence Phalonne Yiepnou Nana}
+%\authornote{Both authors contributed equally to this research.}
+\affiliation{%
+  \institution{University of Neuchâtel}
+  %\city{Mainz}
+  \country{Switzerland}
+}
+\email{hortence.yiepnou@unine.ch}
 
-% \author{Second Author}
-% \authornotemark[1]
-% \affiliation{%
-%   \institution{Another Institute}
-%   \city{Eindhoven}
-%   \country{The Netherlands}}
-% \email{second@affiliation.org}
+\author{Christos Dimitrakakis}
+%\authornotemark[1]
+\affiliation{%
+  \institution{University of Neuchâtel}
+  %\city{Eindhoven}
+  \country{Switzerland}}
+\email{christos.dimitrakakis@unine.ch}
 
 % \author{Third Author}
 % \affiliation{%
@@ -200,7 +200,7 @@ Our work is at the intersection of decision-making under uncertainty, fairness i
 
 \textbf{Decision-making under uncertainty.} Practical selection processes are inherently defined by decision-making under uncertainty, as institutional policies are often defined and made transparent before the specific characteristics of the applicant pool are observed~\cite{kochenderfer2015decision,johnson2010decision,trimmer2011decision,schultz2010decision,soroudi2013decision,faucheux1995decision,preuschoff2013decision}. This requires a shift from deterministic selection \cite{manski2004measuring} to a probabilistic framework in which the candidate pool is modeled as a realization of a potentially unknown probability distribution $P$. In such environments, the decision-maker must optimize an expected utility objective that accounts for both the stochastic nature of applicant arrivals and the predictive uncertainty regarding their future outcomes \cite{johnson2010decision,gardenfors1982unreliable}. Our framework addresses this by formalizing the selection task as an optimization problem on a  policy $\pi$, where the goal is to maximize the expected utility $U(\pi, P)$ across all possible population realizations. 
 
-\textbf{Fairness in Selection.} Fairness in automated decision-making has been a growing area of interest, with multiple formalizations proposed to ensure equitable outcomes across different demographic groups. It is addressed by~\cite{zhang2021fair,zhang2015fairness}, particularly in settings where class labels are censored. The authors propose a new fairness framework that explicitly accounts for censored data, ensuring that decisions do not disproportionately disadvantage certain groups. For instance, DP mentioned by \cite{caton2024fairness,chouldechova2017fair,corbett2017algorithmic,dwork2012fairness,dwork2018group,dwork2018individual,kearns2019empirical,kusner2018causal} ensures that the selection probabilities are proportional between groups, regardless of the underlying performance differences. However, DP has been criticized for potentially disregarding individual qualifications. To address this, \emph{the EO} introduced by~\cite{hardt2016equality} and also used by \cite{caton2024fairness,corbett2017algorithmic}  ensure that individuals with similar qualifications receive comparable treatment. Our work incorporates both fairness notions, balancing trade-offs between utility and equitable representation, as~\cite{bagriacik2024multiple} did in their paper, but with a classification fairness metric. We aim to find an optimal balance that respects both fairness and efficiency.
+\textbf{Fairness in Selection.} Fairness in automated decision-making has been a growing area of interest, with multiple formalizations proposed to ensure equitable outcomes across different demographic groups. It is addressed by~\cite{zhang2021fair,zhang2015fairness}, particularly in settings where class labels are censored. The authors propose a new fairness framework that explicitly accounts for censored data, ensuring that decisions do not disproportionately disadvantage certain groups. For instance, DP mentioned by \cite{caton2024fairness,chouldechova2017fair,corbett2017algorithmic,dwork2012fairness,dwork2018group,dwork2018individual} ensures that the selection probabilities are proportional between groups, regardless of the underlying performance differences. However, DP has been criticized for potentially disregarding individual qualifications. To address this, \emph{the EO} introduced by~\cite{hardt2016equality} ensures that individuals with similar qualifications receive comparable treatment. Our work incorporates both fairness notions, balancing trade-offs between utility and equitable representation, as~\cite{bagriacik2024multiple} did in their paper, but with a classification fairness metric. We aim to find an optimal balance that respects both fairness and efficiency.
 
 The tension between fairness and utility has been a major concern in algorithmic decision making ~\cite{corbett2017algorithmic}. Their studies have shown that enforcing strict fairness constraints can lead to reduced overall utility, raising questions about the optimal balance between fairness and efficiency \cite{berk2021fairness}. Our study explores a weighted combination of fairness penalties, allowing decision makers to well balance fairness and utility according to policy objectives. Additionally, we investigate the use of a maximum operator formulation to ensure that the most severe fairness violations are mitigated.
 
@@ -212,8 +212,7 @@ Our approach is closely related to policy learning, where the goal is to learn a
 
 At the same time, many real-world decision problems involve non-stationary or evolving populations, where the data distribution changes over time. Recent work has explored the use of generative models, such as GANs, to simulate and adapt to changing data distributions \cite{goodfellow2014generative}. Our framework combines these ideas by using a generative model to simulate applicant populations and iteratively updating both the outcome model and the decision policy in multiple stages, thereby, capturing the dynamic nature of real-world decision processes, which is often overlooked in static settings.
 
-\section{Setting and Notation}
-%We consider a decision-making problem in which a decision maker must select a subset of individuals from a population under uncertainty. 
+\section{Setting and Notation} 
 
 In this section, we formally define the problem, introduce the notation, and specify the models used throughout the paper.
 
@@ -238,7 +237,7 @@ For concreteness, we define the following log-linear utility function:
 u(\Pact, \Pout) = \sum_{k=1}^K \log\left(\sum_{i \in N} a_i \cdot y_{i,k}\right) - c \cdot \|\Pact\|_1,
 \end{equation}
 where $y_{i,k} $ is the outcome of candidate $ i $ in course $ k $, $ \|\Pact\|_1 $ is the total number of candidates selected and $ c $ is the cost of selecting a candidate. The logarithmic term enforces diminishing returns on individual performance, encouraging a balanced and high-performance cohort, and the second term $- c \cdot \|\Pact\|_1$
- penalizes selecting too many candidates. Instead of enforcing a fixed admission quota, we incorporate a soft budget constraint. Using this formulation, the decision-maker can easily  balance the trade-off between admitting more candidates and maintaining high expected outcomes, without requiring a predefined admission rate. In practice, strict quota may be difficult to specify in advance, especially under uncertainty about applicant quality or future outcomes. %The parameter $c$ can be interpreted as a Lagrange multiplier associated with an implicit capacity constraint, providing a flexible mechanism that adapts the admission rate to the observed population. 
+ penalizes selecting too many candidates. Instead of enforcing a fixed admission quota, we incorporate a soft budget constraint. Using this formulation, the decision-maker can easily  balance the trade-off between admitting more candidates and maintaining high expected outcomes, without requiring a predefined admission rate. In practice, strict quota may be difficult to specify in advance, especially under uncertainty about applicant quality or future outcomes. 
 
  Although we want our selection to be optimal in expectation, we have to consider the uncertainty in the features and outcomes of the population. 
 When outcomes \( \Pout \) are unknown, but the decision maker observes features \( \Pfeat \), the utility of taking an action \( \Pact \) is the expected utility (reflecting the uncertainty about \( \Pout \)) over possible outcomes:
@@ -301,7 +300,7 @@ In practice, summing over all possible \( \Pfeat \) and \( \Pact \) is intractab
 
 or more specifically for the logistic policy,
 \begin{equation}
- \frac{\partial U(\pol_{\theta_1}, P)}{\partial \theta_{i_1}} \approx \frac{1}{n_\Pfeat} \sum_{k=1}^{n_\Pfeat} \frac{1}{n_\Pact} \sum_{m=1}^{n_\Pact} U(\Pact^{(k,m)}, \Pfeat^{(k)})  \sum_{j=1}^N x_{i,j}^{(k)} \bigg[ \mathbf{1}_{a_j^{(k,m)}=1}  \pol_{\theta_1}(a_j^{(k,m)} =0|x_j^{(k)})  \mathbf{1}_{a_j^{(k,m)}=0}  \pol_{\theta_1}(a_j^{(k,m)} =1|x_j^{(k)}) \bigg],
+ \frac{\partial U(\pol_{\theta_1}, P)}{\partial \theta_{i_1}} \approx \frac{1}{n_\Pfeat} \sum_{k=1}^{n_\Pfeat} \frac{1}{n_\Pact} \sum_{m=1}^{n_\Pact} U(\Pact^{(k,m)}, \Pfeat^{(k)})  \sum_{j=1}^N x_{i,j}^{(k)} \bigg[ \mathbf{1}_{a_j^{(k,m)}=1}  \pol_{\theta_1}(a_j^{(k,m)} =0|x_j^{(k)}) - \mathbf{1}_{a_j^{(k,m)}=0}  \pol_{\theta_1}(a_j^{(k,m)} =1|x_j^{(k)}) \bigg],
 \end{equation}
 
 
@@ -335,7 +334,7 @@ Here, we describe the  fairness used metrics to quantify and address trade-offs 
  
 \subsection{Demographic Parity}
 
-DP~\cite{caton2024fairness}  ensures that subpopulations (based on gender) are equitably represented in the selected set, even if the groups differ in performance. So, the selection probabilities for different groups will be proportional to their representation in the population. For a policy \(\pol\), it is defined as:
+DP~\cite{caton2024fairness}  ensures that subpopulations (for example based on gender) are equitably represented in the selected set, even if the groups differ in performance. So, the selection probabilities for different groups will be proportional to their representation in the population. For a policy \(\pol\), it is defined as:
 \begin{equation}
 | \pol(a_i = 1 | G = g_1) - \pol(a_j = 1 | G = g_2) | \leq \epsilon, \, \forall g_1, g_2 
  \end{equation}
@@ -516,7 +515,7 @@ A commonly used benchmark, such as top-$k$ selection is not included here, as it
   \label{fig5}
 \end{figure}
 
-The results in Figure~\ref{fig5} highlight the importance of adaptivity in sequential decision-making. When the admission cost is low ($c = 0.001$), all learning-based policies: adaptive and static quickly reach a similar level of high utility (around 14). This suggests that in settings where admitting students is not strongly penalized, even fixed policies are sufficient to maintain good performance. The only clear outlier is the GPA threshold baseline, which remains significantly lower, indicating that simple heuristics do not capture the complexity of the decision problem.
+The results in Figure~\ref{fig5} highlight the importance of adaptivity in sequential decision-making. When the admission cost is low ($c = 0.001$), all learning-based policies quickly reach a similar level of high utility (around 14). This suggests that in settings where admitting students is not strongly penalized, even fixed policies are sufficient to maintain good performance. The only clear outlier is the GPA threshold baseline, which remains significantly lower, indicating that simple heuristics do not capture the complexity of the decision problem.
 
 The difference becomes much more pronounced when the cost increases ($c = 0.08$). In this more constrained setting, adaptive policies clearly outperform their static counterparts. The neural adaptive policy shows the strongest improvement over stages, steadily increasing its utility, and reaching the highest overall performance. The logistic adaptive policy also improves over time, but at a slower rate and with a lower final utility. In contrast, both static policies (logistic and neural) plateau early and fail to adapt to dynamic data, resulting in consistently lower performance. The GPA-based policy again remains far below all other methods. 
 
@@ -538,9 +537,9 @@ Both policies maintain relatively low general fairness penalties, which is reass
 This work studies adaptive decision-making under uncertainty in the context of university admissions, highlighting the benefits of learning policies that evolve over time using a policy gradient framework. Our results show that optimizing admission policies with respect to expected utility leads to strong performance while maintaining reasonable fairness outcomes even when fairness is not explicitly enforced. In particular, neural network policies demonstrate greater flexibility and robustness compared to simpler models such as logistic regression, especially in dynamic and constrained settings. We showed that the cost parameter $c$ (penalization of admitting too many students while having small resources) can play a key role in the admission process.
 
 
-Specifically, through multi-stage experiments, we looked at cases where policy updates are delayed, and found that even with less frequent updates, neural network still well performs but not logistic policy. Finally, comparing against simple baselines like GPA or fixed models confirmed the value of letting the system learn and adjust. Among all approaches tested, the neural network-based policy consistently outperformed others, including the logistic one, showing a stronger ability to adapt and improve over time. 
+Specifically, through multi-stage experiments, we looked at cases where policy updates are delayed, and found that even with less frequent updates, neural network still performs well  but not logistic policy. Finally, comparing against simple baselines like GPA or fixed models confirmed the value of letting the system learn and adjust. Among all approaches tested, the neural network-based policy consistently outperformed others, including the logistic one, showing a stronger ability to adapt and improve over time. 
 
-Future work could incorporate explicit fairness constraints into the optimization, to allow for stronger guaranties and better control over trade-offs between utility and equity. Additionally, expanding this work to online learning as sequential decision-making where we update the policy incrementally as each applicant is evaluated, rather than waiting for a full annual cycle. Another future work could be the matching problem. 
+Future work could incorporate explicit fairness constraints into the optimization, to allow for stronger guaranties and better control over trade-offs between utility and equity. Additionally, expanding this work to online learning as sequential decision-making where we update the policy incrementally as each applicant is evaluated, rather than waiting for a full annual cycle.  
 
 
 
@@ -579,9 +578,9 @@ Future work could incorporate explicit fairness constraints into the optimizatio
 %% (and NOT an unnumbered section). This ensures the proper
 %% identification of the section in the article metadata, and the
 %% consistent spelling of the heading.
-% \begin{acks}
-% To Robert, for the bagels and explaining CMYK and color spaces.
-% \end{acks}
+\begin{acks}
+To Robert, for the bagels and explaining CMYK and color spaces.
+\end{acks}
 
 %%
 %% The next two lines define the bibliography style to be used, and
