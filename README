@@ -36,3 +36,10 @@ The repository is organized into independent modules corresponding to the main c
 ├── admitted_students.csv          # Historical admitted-student dataset
 ├── generated_data.csv             # Synthetic applicant data generated for experiments
 └── README.md                      # Project documentation
+
+## Installation
+
+git clone https://github.com/<username>/<repository>.git
+cd <repository>
+
+pip install -r requirements.txt
