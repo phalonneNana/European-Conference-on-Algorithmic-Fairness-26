@@ -1,5 +1,35 @@
-This repository contains a modified version of the acmart document class available at
-https://authors.acm.org/proceedings/production-information/preparing-your-article-with-latex.
 
-It has been modified in compliance with the LaTeX Project Public License, Version 1.3, which 
-encourages the change of filenames and the tracking of changes.
+
+# Sequential Cohort Selection under Uncertainty
+
+This repository contains the official implementation accompanying our paper on adaptive policy learning for sequential university admissions under uncertainty.
+
+The project studies cohort selection as a sequential decision-making problem in which admission policies are optimized to maximize expected utility while accounting for uncertainty in applicant outcomes. We consider both a **one-shot** setting, where a policy is learned once and evaluated on unseen applicants, and a **multi-stage** setting, where admission policies are continuously refined over successive admission cycles using newly observed outcomes.
+
+Our framework combines probabilistic outcome modeling, policy gradient optimization, and generative modeling to learn admission policies from partially observed data.
+
+## Features
+
+* Policy gradient optimization for admission decisions
+* Logistic and neural network admission policies
+* Bayesian multivariate linear regression for outcome prediction
+* Thompson Sampling for sequential policy learning
+* CTGAN-based applicant population modeling
+* One-shot and multi-stage admission settings
+* Utility-based policy optimization with admission cost
+* Fairness evaluation using Demographic Parity and Equality of Opportunity
+* Baseline comparisons against threshold-based and greedy admission strategies
+
+## Repository Structure
+
+```text
+├── data/              # Data preprocessing and simulation
+├── models/            # Bayesian outcome models and policy networks
+├── policies/          # Logistic and neural admission policies
+├── experiments/       # One-shot and sequential experiments
+├── fairness/          # Fairness evaluation metrics
+├── baselines/         # Threshold and greedy baselines
+├── figures/           # Generated figures
+└── README.md
+```
+
