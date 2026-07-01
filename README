@@ -8,6 +8,7 @@ The project studies cohort selection as a sequential decision-making problem in 
 
 Our framework combines probabilistic outcome modeling, policy gradient optimization, and generative modeling to learn admission policies from partially observed data.
 
+
 ## Features
 
 * Policy gradient optimization for admission decisions
@@ -19,6 +20,7 @@ Our framework combines probabilistic outcome modeling, policy gradient optimizat
 * Utility-based policy optimization with admission cost
 * Fairness evaluation using Demographic Parity and Equality of Opportunity
 * Baseline comparisons against threshold-based and greedy admission strategies
+
 
 ## Repository Structure
 
@@ -37,9 +39,10 @@ The repository is organized into independent modules corresponding to the main c
 ├── generated_data.csv             # Synthetic applicant data generated for experiments
 └── README.md                      # Project documentation
 
+
 ## Installation
 
-git clone https://github.com/<username>/<repository>.git
-cd <repository>
+git clone https://github.com/phalonneNana/European-Conference-on-Algorithmic-Fairness-26.git
+cd <European-Conference-on-Algorithmic-Fairness-26>
 
-pip install -r requirements.txt
+pip install -r requirements.txt   or check data_preprocessing.py file
